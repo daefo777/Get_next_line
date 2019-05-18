@@ -6,7 +6,7 @@
 #    By: idaeho <idaeho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/06 16:02:29 by idaeho            #+#    #+#              #
-#    Updated: 2019/05/16 15:03:28 by idaeho           ###   ########.fr        #
+#    Updated: 2019/05/17 20:14:03 by idaeho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,24 @@ SRCS=ft_*.c
 
 OBJECTS=ft_*.o
 
-INCLUDES=./includes/
+INCLUDES= -I ./includes
+
+CC = gcc
+
+FLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(SRCS) libft.h
-	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
-	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
+$(NAME):
+	$(CC) $(FLAGS) $(INCLUDES) -c $(SRCS)
+	ar rc $(NAME) $(OBJECTS)
+	ranlib $(NAME)
 
 clean:
-	@/bin/rm -f $(OBJECTS)
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
 
